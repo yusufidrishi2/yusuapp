@@ -9,10 +9,10 @@ module.exports = env => {
 			splitChunks: {
 				cacheGroups: {
 					styles: {
-					name: 'styles',
-					test: /\.(sa|sc|c)ss$/,
-					chunks: 'all',
-					enforce: true
+						name: 'styles',
+						test: /\.(sa|sc|c)ss$/,
+						chunks: 'all',
+						enforce: true
 					}
 				}
 			}
@@ -21,6 +21,7 @@ module.exports = env => {
 			app :[ './src/scripts/app/app.tsx']
 		},
 		mode: 'none',
+		target: 'node',
 		devtool: 'inline-source-map',
 		output: {
 			path : path.resolve(__dirname, 'dist'),
