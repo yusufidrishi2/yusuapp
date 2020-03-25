@@ -9,10 +9,10 @@ import { MyOwnTSX } from '../utils/myowntsx'
 import * as React from 'react'
 import * as $ from 'jquery'
 import * as firebase from 'firebase/app'
-// import '../app/firebase.js'
-import 'firebase/auth';
-import 'firebase/database';
+import 'firebase/auth'
+import 'firebase/database'
 import '../app/firebase.js'
+import 'firebase/firestore'
 
 /**
  * @class which executes at the begining of the app  
