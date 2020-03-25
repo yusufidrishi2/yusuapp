@@ -8,11 +8,11 @@
 import { MyOwnTSX } from '../utils/myowntsx'
 import * as React from 'react'
 import * as $ from 'jquery'
-import * as firebase from 'firebase/app'
-import 'firebase/auth'
-import 'firebase/database'
+//import * as firebase from "firebase/app";
+// import '../app/firebase.js'
+import 'firebase/auth';
+import 'firebase/database';
 import '../app/firebase.js'
-import 'firebase/firestore'
 
 /**
  * @class which executes at the begining of the app  
@@ -28,7 +28,7 @@ class App {
      */
     public constructor () {
         // this.loader();
-        this._docRef = this.initializeFirebase();
+        //this._docRef = this.initializeFirebase();
         this.start();
     }
 
@@ -56,20 +56,20 @@ class App {
         });
     }
 
-    private initializeFirebase() {
-        let fireapp = firebase.initializeApp({
-            apiKey: "AIzaSyBAPGIGvT0b8lxtzuzN7t2hF9eNcpFm6Ww",
-            authDomain: "yusuapp-a2f26.firebaseapp.com",
-            databaseURL: "https://yusuapp-a2f26.firebaseio.com",
-            projectId: "yusuapp-a2f26",
-            storageBucket: "yusuapp-a2f26.appspot.com",
-            messagingSenderId: "362158389535",
-            appId: "1:362158389535:web:dfe4ba03c6e88e947d582a",
-            measurementId: "G-WDWSG3LZT4"
-        });
-        let firestore = firebase.firestore(fireapp);
-        return firestore.collection("tasks").doc('data');
-    }
+    // private initializeFirebase() {
+    //     let fireapp = firebase.initializeApp({
+    //         apiKey: "AIzaSyBAPGIGvT0b8lxtzuzN7t2hF9eNcpFm6Ww",
+    //         authDomain: "yusuapp-a2f26.firebaseapp.com",
+    //         databaseURL: "https://yusuapp-a2f26.firebaseio.com",
+    //         projectId: "yusuapp-a2f26",
+    //         storageBucket: "yusuapp-a2f26.appspot.com",
+    //         messagingSenderId: "362158389535",
+    //         appId: "1:362158389535:web:dfe4ba03c6e88e947d582a",
+    //         measurementId: "G-WDWSG3LZT4"
+    //     });
+    //     let firestore = firebase.firestore(fireapp);
+    //     return firestore.collection("tasks").doc('data');
+    // }
 
     private loader() {
         let doc: HTMLElement|null = document.getElementById('body');
@@ -122,13 +122,13 @@ class App {
     }
 
     private events (curApp: App) {
-        $('#send').on('click', function (e) {
+        $('#send').on('click', function () {
             let message = $('#message').val() as string;
             let username = localStorage.getItem("username") as string;
             curApp._upstreamData[username] = message;
             curApp.writeFile(curApp._upstreamData);
         });
-        $('#signup').on('click', function (e) {
+        $('#signup').on('click', function () {
             let username = $('#username').val() as string;
             if (curApp._upstreamData.username.hasOwnProperty(username)) {
                 alert("username exists!! Retry with different user name :)")
