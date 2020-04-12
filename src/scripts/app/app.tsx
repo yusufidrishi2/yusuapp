@@ -8,11 +8,6 @@
 import { MyOwnTSX } from '../utils/myowntsx'
 import * as React from 'react'
 import * as $ from 'jquery'
-//import * as firebase from "firebase/app";
-// import '../app/firebase.js'
-import 'firebase/auth';
-import 'firebase/database';
-import '../app/firebase.js'
 
 /**
  * @class which executes at the begining of the app  
@@ -20,15 +15,11 @@ import '../app/firebase.js'
 class App {
 
     private _upstreamData: any = undefined;
-    private _docRef: any = undefined;
-
 
     /**
      * @public @constructor to initiate the application to start
      */
     public constructor () {
-        // this.loader();
-        //this._docRef = this.initializeFirebase();
         this.start();
     }
 
@@ -36,40 +27,8 @@ class App {
      * @private @function start to show the UI
      */
     private start() {
-        new Promise((resolve, reject) => {
-            try {
-                resolve(this._docRef.set(this._upstreamData));
-            } catch(err) {
-                reject(err);
-            }
-        })
-        .then((data) => {
-            this._upstreamData = JSON.parse(data as any);
-            console.log('Success');
-            this.check();
-            this.events(this);
-        })
-        .catch((err) => {
-            console.log(err);
-            this.check();
-            this.events(this);
-        });
+        this.readFile();
     }
-
-    // private initializeFirebase() {
-    //     let fireapp = firebase.initializeApp({
-    //         apiKey: "AIzaSyBAPGIGvT0b8lxtzuzN7t2hF9eNcpFm6Ww",
-    //         authDomain: "yusuapp-a2f26.firebaseapp.com",
-    //         databaseURL: "https://yusuapp-a2f26.firebaseio.com",
-    //         projectId: "yusuapp-a2f26",
-    //         storageBucket: "yusuapp-a2f26.appspot.com",
-    //         messagingSenderId: "362158389535",
-    //         appId: "1:362158389535:web:dfe4ba03c6e88e947d582a",
-    //         measurementId: "G-WDWSG3LZT4"
-    //     });
-    //     let firestore = firebase.firestore(fireapp);
-    //     return firestore.collection("tasks").doc('data');
-    // }
 
     private loader() {
         let doc: HTMLElement|null = document.getElementById('body');
@@ -141,24 +100,11 @@ class App {
     }
 
     private writeFile(data: any) {
-        new Promise((resolve, reject) => {
-            try {
-                resolve(this._docRef.set(this._upstreamData));
-            } catch(err) {
-                reject(err);
-            }
-        })
-        .then((data) => {
-            this._upstreamData = JSON.parse(data as any);
-            console.log('Success');
-            this.check();
-            this.events(this);
-        })
-        .catch((err) => {
-            console.log(err);
-            this.check();
-            this.events(this);
-        });
+        
+    }
+
+    private readFile() {
+        
     }
 }
 
