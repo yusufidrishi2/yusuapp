@@ -1,0 +1,22 @@
+{
+
+    "$id": "http://json-schema.org/draft-04/schema#",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "userName": {
+            "type": "string"
+        },
+        "userChats": {
+            "type": "object",
+            "properties": {
+                "timeStamp": {
+                    "type": "number"
+                },
+                "chats": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
