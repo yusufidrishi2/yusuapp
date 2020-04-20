@@ -3,38 +3,30 @@ from flask_cors import CORS, cross_origin
 import json
 from jsonschema import validate
 from data_management import DataManagement
+from main import Main 
 
 app = Flask(__name__)
 
-class API:
+Main.start()
+        
+# The Incoming request must be in one of these formats
+with open('/home/imerit/yusuapp/backend/input-data-schema.json', 'r') as f:
+    input_data_schema = json.load(f)
 
-    def __init__(self):
-        pass
+# Cors initialization for cross origin
+cors = CORS(app, resources={r"/chat-api/*": {"origins": "*"}})
+app.config['CORS_HEADERS'] = 'Content-Type'
 
-    def start():
-        # The Incoming request must be in one of these formats
-        with open('/home/imerit/yusuapp/backend/input-data-schema.json', 'r') as f:
-            API.input_data_schema = json.load(f)
+# Funtion to validate the json
+def validate_json(input_json, input_schema):
+    try:
+        validate(input_json, schema=input_schema)
 
-        # Cors initialization for cross origin
-        cors = CORS(app, resources={r"/object-tracker-api/*": {"origins": "*"}})
-        app.config['CORS_HEADERS'] = 'Content-Type'
+    except Exception as e:
+        print('\n[INFO] JSON does not match = ', e, flush=True)
+        return False
 
-        # app.run(host='0.0.0.0', port=5000, debug=False, use_reloader=True, ssl_context='adhoc')
-        # app.run(host='0.0.0.0', port=5000, debug=False, use_reloader=True)
-        app.run()
-
-
-    # Funtion to validate the json
-    def validate_json(input_json, input_schema):
-        try:
-            validate(input_json, schema=input_schema)
-
-        except Exception as e:
-            print('\n[INFO] JSON does not match = ', e, flush=True)
-            return False
-
-        return True
+    return True
 
 # Main function where API hits first
 @app.route('/chat-api', methods=['POST'])
@@ -44,9 +36,8 @@ def return_tracked_annotations():
     try:
         payload = request.json
         print('\n[INFO] Received json = ', payload, type(payload), flush=True)
-
         if payload:
-            if API.validate_json(input_json=payload, input_schema=API.input_data_schema):
+            if validate_json(input_json=payload, input_schema=input_data_schema):
                 print('\n[INFO] First schema matched', flush=True)
 
                 try:
@@ -69,3 +60,12 @@ def return_tracked_annotations():
     except Exception as e:
         print("\n[INFO] Not a valid JSON = ", e, flush=True)
         return make_response('Error 400 Bad Request: The request you made is not a valid JSON.')
+
+
+@app.route('/', methods=['POST'])
+@cross_origin(origin='*')
+def get_test():
+    payload = request.json
+    print('triggered = ', flush=True)
+    print(payload, flush=True)
+    return json.dumps("triggered")

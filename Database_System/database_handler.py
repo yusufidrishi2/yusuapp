@@ -14,10 +14,10 @@ class Database:
             Database.get_data = SqliteSystem.get_data
             Database.set_data = SqliteSystem.set_data
         else:
-            print("Developer must implement the tables for the database")
+            print("\n[WARN] Developer must implement the tables for the database", flush=True)
 
     def get_data(key):
-        print("Developer must implement the fetch logic from table")
+        print("\n[WARN] Developer must implement the fetch logic from table", flush=True)
 
     def set_data(key, value):
-        print("Developer must implement the insertion logic to table")
+        print("\n[WARN] Developer must implement the insertion logic to table", flush=True)

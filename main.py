@@ -1,5 +1,4 @@
 from Database_System.database_handler import Database
-from api import API
 
 class Main:
 
@@ -8,5 +7,4 @@ class Main:
 
     def start():
         Database.start()
-        API.start()
     

@@ -45,7 +45,7 @@ class SqliteSystem:
         c = conn.cursor()
 
         response = []
-
+        
         if key == 'all':
             c.execute("SELECT * from {table}".format(table=config['DATABASE']['table_name']))
         else:
