@@ -9,6 +9,7 @@
         },
         "userChats": {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
                 "timeStamp": {
                     "type": "number"
