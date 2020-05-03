@@ -3,7 +3,7 @@
     
     // API url
     window.__env = {
-        LOAD_CHATS_API: "http://192.168.43.9:8089/chat-api" 
+        LOAD_CHATS_API: "https://05d32b76.ngrok.io/chat-api" 
     };
   
   }(this));

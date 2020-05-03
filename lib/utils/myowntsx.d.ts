@@ -22,6 +22,6 @@ export declare class MyOwnTSX {
      * @param view JSX.Element which gives the what to render
      * @param doc HTMLElement targets where to render
      */
-    static renderUI(view: JSX.Element, doc: HTMLElement): void;
+    static renderUI(view: JSX.Element, doc: HTMLElement | null): void;
     static getCSSProp(data: string): React.CSSProperties;
 }

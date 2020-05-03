@@ -1,0 +1,95 @@
+.heading {
+    text-align: center; 
+    margin-top: -10px; 
+    font-size: 12px;
+}
+
+.divSignUp {
+    text-align: center; 
+    margin-top: 150px;
+}
+
+.paraSignUp {
+    display: inline-block;
+}
+
+.inputSignUp {
+    display: inline-block;
+    margin-left: 10px;
+    width:30%;
+}
+
+.buttonSignUp {
+    width: 22%
+}
+
+.loginAs {
+    display: inline-block;
+    font-size: 18px;
+}
+
+.buttonLogout {
+    display: inline-block;
+    float: right;
+    width: 18%;
+    margin-top:15px;
+    height: 26px
+}
+
+.divChatBody {
+    overflow-y: scroll;
+    background-color: lightgray;
+}
+
+.divMessage {
+    margin-top: 20px;
+}
+
+.inputText {
+    display: inline-block;
+    width: 76%;
+    margin-left: 10px;
+    font-size: 18px;
+    resize: none;
+    overflow-y: scroll;
+    font-family: 'Times New Roman';
+}
+
+.buttonSend {
+    display: inline-block;
+    float: right;
+    width: 18%;
+    height: 26px;
+}
+
+.divRightChat {
+    margin-bottom: 10px;
+    border-radius: 20px 20px 5px 20px;
+    background: #baf58e;
+    border-style: solid;
+    border-color: #68af43;
+    border-width: 3px;
+    box-shadow: 1px 3px #888888;
+}
+
+.paraRightChat {
+    word-break: break-word;
+    margin: 5px;
+    text-align: left;
+}
+
+.divLeftChat {
+    margin-bottom: 10px;
+    border-radius: 20px 20px 20px 5px;
+    background: #82efe4;
+    border-style: solid;
+    border-color: #2da7a1;
+    border-width: 3px;
+    box-shadow: 1px 3px #888888;
+}
+
+.paraLeftChat {
+    text-align: left;
+    word-break: break-word;
+    margin: 5px;
+}

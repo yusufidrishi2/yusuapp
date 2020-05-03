@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
@@ -24,7 +25,6 @@ module.exports = env => {
 			app :[ './src/scripts/app/app.tsx']
 		},
 		mode: 'none',
-		target: 'node',
 		devtool: 'inline-source-map',
 		output: {
 			path : path.resolve(__dirname, 'dist'),
@@ -41,6 +41,38 @@ module.exports = env => {
 				{
 					test : /\.html$/,
 					use : ['html-loader']
+				},
+				{
+					test: /.(sa|sc|c|module.c)ss$/,
+					exclude: /(node_modules|libs)/,
+					use: [
+						'style-loader',
+						{
+							loader: '@teamsupercell/typings-for-css-modules-loader'
+						},
+						{
+							loader: "css-loader",
+							options: {
+								url: false,
+								modules: true,
+								importLoaders: 1,
+								localsConvention: 'camelCase',
+								modules: {
+									localIdentName: "[name]__[local]___[hash:base64:5]",
+								},
+							}
+						},
+						'sass-loader',
+						{  
+							loader : 'postcss-loader',
+							options: {
+								plugins: (loader) => [
+									require('autoprefixer'),
+								]
+							}
+
+						}
+					]
 				}
 			]
 		},
@@ -49,10 +81,15 @@ module.exports = env => {
 			new HtmlWebpackPlugin({
 				template: 'src/index.html'
 			}),
+			new webpack.IgnorePlugin(/^\.\/env.js$/),
 			new CopyPlugin([
 				{ 
 					from: 'img', 
 					to: 'img' 
+				},
+				{
+					from : 'src/env.js',
+					to : './'
 				}
 			]),
 			new Dotenv({
